@@ -12,6 +12,23 @@ pipeline {
                 sh 'env | grep ROS'
             }
         }
+        stage('Pull Image') {
+            steps {
+                sh 'docker compose pull'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'docker compose up --abort-on-container-exit --exit-code-from ros1_ci'
+            }
+        }
+
+        stage('Cleanup') {
+            steps {
+                sh 'docker compose down'
+            }
+        }
         stage('Done') {
             steps {
                 sleep 5

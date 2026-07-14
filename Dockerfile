@@ -1,5 +1,3 @@
-# user:~/simulation_ws/src/ros1_ci$ docker build -t ros1_ci -f Dockerfile ..
-# user:~/simulation_ws/src/ros1_ci$ docker run --rm -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw ros1_ci:latest bash -c "rostest tortoisebot_waypoints waypoints_test.test"
 FROM osrf/ros:noetic-desktop-full-focal
 
 # Tell the container to use the C.UTF-8 locale for its language settings
@@ -46,5 +44,5 @@ RUN sed -i 's|source "/opt/ros/\$ROS_DISTRO/setup.bash"|source "/catkin_ws/devel
 # Cleanup
 RUN rm -rf /root/.cache
 
-# Start a bash shell when the container starts
-CMD ["bash"]
+# Start a test
+CMD ["rostest", "tortoisebot_waypoints", "waypoints_test.test"]

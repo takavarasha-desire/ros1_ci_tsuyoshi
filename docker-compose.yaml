@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  ros1_ci:
+    image: akitsuyoshi/cp24:ros1_ci
+    # build:
+    #   context: ..
+    #   dockerfile: ros1_ci/Dockerfile
+    container_name: ros1_ci
+    environment:
+      DISPLAY: ${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    restart: "no"
